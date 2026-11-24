@@ -1106,3 +1106,6 @@ msgstr "在服务容器内运行以下命令，查看可见的网口及其 IP �
 
 msgid "Set `nic_name` to the name of a listed interface that can reach the other nodes in the deployment."
 msgstr "从中选择能与其他节点互通的网口，将其名称填入 `nic_name`。"
+
+msgid "To check the link speed of a physical interface, run `ethtool <physical-interface>` on the host and look for `Speed` in the output. For example, `100000Mb/s` means 100 Gb/s."
+msgstr "如需确认物理网口的链路速率，可在宿主机上运行 `ethtool <物理网口名>`，查看输出中的 `Speed`。例如，`100000Mb/s` 表示 100 Gb/s。"
