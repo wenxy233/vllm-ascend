@@ -1098,5 +1098,5 @@ msgstr ""
 msgid "2. Which network interface should I use for a multi-node deployment?"
 msgstr "2. 多节点部署时，如何选择通信网口？"
 
-msgid "Available interfaces depend on the hardware and cluster network configuration. In the launch examples, some components use `nic_name` to select an interface for cross-node TCP connections. Choose an interface that is visible inside the service container and can reach the other nodes. This can be a high-speed interface if your cluster provides one."
-msgstr "可用网口取决于机型和集群网络配置。启动示例中，部分组件通过 `nic_name` 选择跨节点 TCP 通信使用的网口。请填写服务容器内可见且能与其他节点互通的网口名称。如果集群提供符合这些条件的高速网口，也可以选用它。"
+msgid "Depending on the hardware and cluster network configuration, a node may have both a management interface for administration and a separate high-speed interface for traffic between nodes. In the launch examples, some components use `nic_name` to select an interface for cross-node TCP connections. Set it to the name of an interface that is visible inside the service container and can reach the other nodes."
+msgstr "根据机型和集群网络配置，节点可能同时配有用于日常运维的管理网口和用于节点间通信的高速网口。启动示例中，部分组件通过 `nic_name` 选择跨节点 TCP 通信的网口。请填写服务容器内可见且能与对端节点互通的网口名称。"
