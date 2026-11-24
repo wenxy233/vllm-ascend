@@ -1421,7 +1421,11 @@ ip -br addr
 
 Set `nic_name` to the name of a listed interface that can reach the other nodes in the deployment.
 
-To check the link speed of a physical interface, run `ethtool <physical-interface>` on the host and look for `Speed` in the output. For example, `100000Mb/s` means 100 Gb/s.
+To check the link speed, run the following command on the host. Replace `<physical-interface>` with the name of the physical interface.
+
+    ethtool <physical-interface>
+
+Check `Speed` in the output. For example, `100000Mb/s` means 100 Gb/s.
 
 ## Verification
 
