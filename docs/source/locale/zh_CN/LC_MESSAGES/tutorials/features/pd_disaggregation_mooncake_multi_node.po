@@ -1094,3 +1094,15 @@ msgid ""
 msgstr ""
 "- 有关 aisbench 命令和参数的更多详细信息，请参阅 "
 "[aisbench](https://github.com/AISBench/benchmark)。"
+
+msgid "2. How can I check which host interface Gloo uses after startup?"
+msgstr "2. 服务启动后，如何确认 Gloo 使用的主机网络接口？"
+
+msgid "After the distributed workers have connected, run `ss -tnp state established` in the service container on each participating node. Find the worker PID and the peer address for the Gloo process group. Record the local and peer IP addresses of the established connection. If process information is missing, run the command as the worker's user."
+msgstr "分布式 worker 建立连接后，在各参与节点的服务容器内运行 `ss -tnp state established`。按 worker PID 和 Gloo 进程组的对端地址查找已建立的连接，记下其本端和对端 IP。如果未显示进程信息，可使用运行 worker 的用户执行命令。"
+
+msgid "Use `ip -br addr` to find the interface that owns the local IP. With the two observed addresses, run `ip route get <peer-ip> from <local-ip>` and check the current egress interface after `dev`. Compare it with the interface configured in `GLOO_SOCKET_IFNAME` (`nic_name` in the launch examples). On a VLAN or bond, `dev` can identify a logical interface."
+msgstr "用 `ip -br addr` 查看本端 IP 所属的接口。将连接中的两个地址代入 `ip route get <peer-ip> from <local-ip>`，查看 `dev` 后的当前出口接口，并与 `GLOO_SOCKET_IFNAME`（启动示例中的 `nic_name`）核对。使用 VLAN 或绑定网卡时，`dev` 可能显示逻辑接口。"
+
+msgid "This checks host TCP connections. To verify the KV cache path between prefill and decode, check the Mooncake transport selected for your deployment and the link checks for your hardware in this guide."
+msgstr "上述步骤用于检查主机 TCP 连接。要确认预填充与解码节点之间的 KV 缓存传输路径，请核对本部署选用的 Mooncake 传输方式，并参考本教程中对应硬件的链路检查步骤。"
