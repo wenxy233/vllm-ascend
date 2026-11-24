@@ -1409,9 +1409,9 @@ ais_bench --models vllm_api_stream_chat --datasets gsm8k_gen_0_shot_cot_str_perf
 
 Since the computation of some NPU operators requires several rounds of warm-up to achieve best performance, we recommend preheating the service with some requests before conducting performance tests to achieve the best end-to-end throughput.
 
-### 2. How can I check which host interface Gloo uses after startup?
+### 2. Which interface does a cross-node TCP connection use on a host with multiple interfaces? {: #2-gloo}
 
-A node may have both a management interface (for example, 1 Gb/s) and a high-speed interface (for example, 100 Gb/s). Even if you use the management IP to log in over SSH, Gloo can use a different interface for connections between nodes.
+A node may have both a management interface (for example, 1 Gb/s) and a high-speed interface (for example, 100 Gb/s). The steps below use Gloo as an example. Even if you use the management IP to log in over SSH, Gloo can use a different interface for connections between nodes.
 
 Once the distributed workers have connected, list the established TCP connections in the service container on each participating node.
 
