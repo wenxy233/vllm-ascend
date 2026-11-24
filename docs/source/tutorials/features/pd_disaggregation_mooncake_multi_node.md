@@ -1411,11 +1411,27 @@ Since the computation of some NPU operators requires several rounds of warm-up t
 
 ### 2. How can I check which host interface Gloo uses after startup?
 
-If the nodes connect to both a management network (for example, 1 Gb/s) and a high-speed network (for example, 100 Gb/s), use the following steps to check which interface Gloo uses for connections between nodes.
+A node may have both a management interface (for example, 1 Gb/s) and a high-speed interface (for example, 100 Gb/s). Even if you use the management IP to log in over SSH, Gloo can use a different interface for connections between nodes.
 
-After the distributed workers have connected, run `ss -tnp state established` in the service container on each participating node. Find the worker PID and the peer address for the Gloo process group. Record the local and peer IP addresses of the established connection. If process information is missing, run the command as the worker's user.
+Once the distributed workers have connected, list the established TCP connections in the service container on each participating node.
 
-Use `ip -br addr` to find the interface that owns the local IP. With the two observed addresses, run `ip route get <peer-ip> from <local-ip>` and check the current egress interface after `dev`. Compare it with the interface configured in `GLOO_SOCKET_IFNAME` (`nic_name` in the launch examples). On a VLAN or bond, `dev` can identify a logical interface.
+```bash
+ss -tnp state established
+```
+
+Use the worker PID and the Gloo peer address to identify the connection. If the PID is missing, run the command as the user running the worker. Record the local and peer IP addresses, then find the interface that owns the local IP.
+
+```bash
+ip -br addr
+```
+
+Check the route to the peer. Replace `192.0.2.20` with the observed peer IP and `192.0.2.10` with the observed local IP.
+
+```bash
+ip route get 192.0.2.20 from 192.0.2.10
+```
+
+Compare the egress interface shown after `dev` with `GLOO_SOCKET_IFNAME` (`nic_name` in the launch examples). On a VLAN or bond, `dev` can identify a logical interface.
 
 This checks host TCP connections. To verify the KV cache path between prefill and decode, check the Mooncake transport selected for your deployment and the link checks for your hardware in this guide.
 
