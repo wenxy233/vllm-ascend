@@ -1098,6 +1098,9 @@ msgstr ""
 msgid "2. How can I check which host interface Gloo uses after startup?"
 msgstr "2. 服务启动后，如何确认 Gloo 使用的主机网络接口？"
 
+msgid "If the nodes connect to both a management network (for example, 1 Gb/s) and a high-speed network (for example, 100 Gb/s), use the following steps to check which interface Gloo uses for connections between nodes."
+msgstr "如果节点同时连接了管理网（例如 1 Gb/s）和高速网络（例如 100 Gb/s），可以按以下步骤确认 Gloo 的跨节点连接是否使用了预期的网口。"
+
 msgid "After the distributed workers have connected, run `ss -tnp state established` in the service container on each participating node. Find the worker PID and the peer address for the Gloo process group. Record the local and peer IP addresses of the established connection. If process information is missing, run the command as the worker's user."
 msgstr "分布式 worker 建立连接后，在各参与节点的服务容器内运行 `ss -tnp state established`。按 worker PID 和 Gloo 进程组的对端地址查找已建立的连接，记下其本端和对端 IP。如果未显示进程信息，可使用运行 worker 的用户执行命令。"
 

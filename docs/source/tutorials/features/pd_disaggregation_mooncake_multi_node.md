@@ -1411,6 +1411,8 @@ Since the computation of some NPU operators requires several rounds of warm-up t
 
 ### 2. How can I check which host interface Gloo uses after startup?
 
+If the nodes connect to both a management network (for example, 1 Gb/s) and a high-speed network (for example, 100 Gb/s), use the following steps to check which interface Gloo uses for connections between nodes.
+
 After the distributed workers have connected, run `ss -tnp state established` in the service container on each participating node. Find the worker PID and the peer address for the Gloo process group. Record the local and peer IP addresses of the established connection. If process information is missing, run the command as the worker's user.
 
 Use `ip -br addr` to find the interface that owns the local IP. With the two observed addresses, run `ip route get <peer-ip> from <local-ip>` and check the current egress interface after `dev`. Compare it with the interface configured in `GLOO_SOCKET_IFNAME` (`nic_name` in the launch examples). On a VLAN or bond, `dev` can identify a logical interface.
