@@ -1100,3 +1100,6 @@ msgstr "2. 多节点部署时，如何选择通信网口？"
 
 msgid "Available interfaces depend on the hardware and cluster network configuration. In the launch examples, some components use `nic_name` to select an interface for cross-node TCP connections. Choose an interface that is visible inside the service container and can reach the other nodes. This can be a high-speed interface if your cluster provides one."
 msgstr "可用网口取决于机型和集群网络配置。启动示例中，部分组件通过 `nic_name` 选择跨节点 TCP 通信使用的网口。请填写服务容器内可见且能与其他节点互通的网口名称。如果集群提供符合这些条件的高速网口，也可以选用它。"
+
+msgid "Set `local_ip` to an IP address on this node that the other nodes can reach. The examples use this address for HCCL initialization (`HCCL_IF_IP`). The Atlas 850E D2RH example also passes it to `--host` and `--data-parallel-address`."
+msgstr "请将 `local_ip` 设为本机 IP 地址，并确保其他参与节点能访问该地址。启动示例用它设置 HCCL 初始化地址（`HCCL_IF_IP`）。Atlas 850E 的 D2RH 示例还将它用于 API 监听（`--host`）和数据并行协调（`--data-parallel-address`）。"

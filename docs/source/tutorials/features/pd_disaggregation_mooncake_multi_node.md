@@ -1413,6 +1413,8 @@ Since the computation of some NPU operators requires several rounds of warm-up t
 
 Available interfaces depend on the hardware and cluster network configuration. In the launch examples, some components use `nic_name` to select an interface for cross-node TCP connections. Choose an interface that is visible inside the service container and can reach the other nodes. This can be a high-speed interface if your cluster provides one.
 
+Set `local_ip` to an IP address on this node that the other nodes can reach. The examples use this address for HCCL initialization (`HCCL_IF_IP`). The Atlas 850E D2RH example also passes it to `--host` and `--data-parallel-address`.
+
 ## Verification
 
 Check service health using the proxy server endpoint.
