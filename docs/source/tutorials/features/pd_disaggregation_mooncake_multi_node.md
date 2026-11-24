@@ -1409,31 +1409,9 @@ ais_bench --models vllm_api_stream_chat --datasets gsm8k_gen_0_shot_cot_str_perf
 
 Since the computation of some NPU operators requires several rounds of warm-up to achieve best performance, we recommend preheating the service with some requests before conducting performance tests to achieve the best end-to-end throughput.
 
-### 2. Which interface does a cross-node TCP connection use on a host with multiple interfaces? {: #2-gloo}
+### 2. Which network interface should I use for a multi-node deployment? {: #2-gloo}
 
-A node may have both a management interface (for example, 1 Gb/s) and a high-speed interface (for example, 100 Gb/s). The steps below use Gloo as an example. Even if you use the management IP to log in over SSH, Gloo can use a different interface for connections between nodes.
-
-Once the distributed workers have connected, list the established TCP connections in the service container on each participating node.
-
-```bash
-ss -tnp state established
-```
-
-Use the worker PID and the Gloo peer address to identify the connection. If the PID is missing, run the command as the user running the worker. Record the local and peer IP addresses, then find the interface that owns the local IP.
-
-```bash
-ip -br addr
-```
-
-Check the route to the peer. Replace `192.0.2.20` with the observed peer IP and `192.0.2.10` with the observed local IP.
-
-```bash
-ip route get 192.0.2.20 from 192.0.2.10
-```
-
-Compare the egress interface shown after `dev` with `GLOO_SOCKET_IFNAME` (`nic_name` in the launch examples). On a VLAN or bond, `dev` can identify a logical interface.
-
-This checks host TCP connections. To verify the KV cache path between prefill and decode, check the Mooncake transport selected for your deployment and the link checks for your hardware in this guide.
+Available interfaces depend on the hardware and cluster network configuration. Set `nic_name` in the launch examples to an interface that is visible inside the service container and can reach the other nodes. If the cluster provides a high-speed interface for traffic between nodes, you can select it for Gloo by setting `nic_name` to its name.
 
 ## Verification
 
