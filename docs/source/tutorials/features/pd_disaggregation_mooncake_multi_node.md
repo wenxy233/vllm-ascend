@@ -1411,7 +1411,7 @@ Since the computation of some NPU operators requires several rounds of warm-up t
 
 ### 2. Which network interface should I use for a multi-node deployment? {: #2-gloo}
 
-Available interfaces depend on the hardware and cluster network configuration. Set `nic_name` in the launch examples to an interface that is visible inside the service container and can reach the other nodes. If the cluster provides a high-speed interface for traffic between nodes, you can select it for Gloo by setting `nic_name` to its name.
+Available interfaces depend on the hardware and cluster network configuration. In the launch examples, some components use `nic_name` to select an interface for cross-node TCP connections. Choose an interface that is visible inside the service container and can reach the other nodes. This can be a high-speed interface if your cluster provides one.
 
 ## Verification
 
