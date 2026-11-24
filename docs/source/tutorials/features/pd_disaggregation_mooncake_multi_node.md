@@ -1411,7 +1411,15 @@ Since the computation of some NPU operators requires several rounds of warm-up t
 
 ### 2. Which network interface should I use for a multi-node deployment? {: #2-gloo}
 
-Depending on the hardware and cluster network configuration, interface speeds can vary. For example, a node might use a 1 Gb/s management interface for administration and a 100 Gb/s interface for traffic between nodes. In the launch examples, some components use `nic_name` to select an interface for cross-node TCP connections. Set it to the name of an interface that is visible inside the service container and can reach the other nodes.
+Depending on the hardware and cluster network configuration, a node may have both a management interface for administration (for example, 1 Gb/s) and a high-speed interface for traffic between nodes (for example, 100 Gb/s). In the launch examples, some components use `nic_name` to select an interface for cross-node TCP connections.
+
+Run the following command inside the service container to list the interfaces it can see and their IP addresses.
+
+```bash
+ip -br addr
+```
+
+Set `nic_name` to the name of a listed interface that can reach the peer node.
 
 ## Verification
 
