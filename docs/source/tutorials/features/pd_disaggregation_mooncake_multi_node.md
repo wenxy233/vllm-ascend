@@ -1409,6 +1409,14 @@ ais_bench --models vllm_api_stream_chat --datasets gsm8k_gen_0_shot_cot_str_perf
 
 Since the computation of some NPU operators requires several rounds of warm-up to achieve best performance, we recommend preheating the service with some requests before conducting performance tests to achieve the best end-to-end throughput.
 
+### 2. How can I check which host interface Gloo uses after startup?
+
+After the distributed workers have connected, run `ss -tnp state established` in the service container on each participating node. Find the worker PID and the peer address for the Gloo process group. Record the local and peer IP addresses of the established connection. If process information is missing, run the command as the worker's user.
+
+Use `ip -br addr` to find the interface that owns the local IP. With the two observed addresses, run `ip route get <peer-ip> from <local-ip>` and check the current egress interface after `dev`. Compare it with the interface configured in `GLOO_SOCKET_IFNAME` (`nic_name` in the launch examples). On a VLAN or bond, `dev` can identify a logical interface.
+
+This checks host TCP connections. To verify the KV cache path between prefill and decode, check the Mooncake transport selected for your deployment and the link checks for your hardware in this guide.
+
 ## Verification
 
 Check service health using the proxy server endpoint.
