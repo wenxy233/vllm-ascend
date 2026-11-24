@@ -1419,7 +1419,7 @@ Run the following command inside the service container to list the interfaces it
 ip -br addr
 ```
 
-Set `nic_name` to the name of a listed interface that can reach the peer node.
+Set `nic_name` to the name of a listed interface that can reach the other nodes in the deployment.
 
 ## Verification
 

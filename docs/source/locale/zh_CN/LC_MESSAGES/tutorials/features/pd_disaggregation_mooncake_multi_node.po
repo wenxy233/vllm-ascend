@@ -1104,5 +1104,5 @@ msgstr "根据机型和集群网络配置，节点可能同时配有用于日常
 msgid "Run the following command inside the service container to list the interfaces it can see and their IP addresses."
 msgstr "在服务容器内运行以下命令，查看可见的网口及其 IP 地址。"
 
-msgid "Set `nic_name` to the name of a listed interface that can reach the peer node."
-msgstr "从中选择能与对端节点互通的网口，将其名称填入 `nic_name`。"
+msgid "Set `nic_name` to the name of a listed interface that can reach the other nodes in the deployment."
+msgstr "从中选择能与其他节点互通的网口，将其名称填入 `nic_name`。"
