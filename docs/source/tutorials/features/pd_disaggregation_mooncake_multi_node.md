@@ -1409,7 +1409,7 @@ ais_bench --models vllm_api_stream_chat --datasets gsm8k_gen_0_shot_cot_str_perf
 
 Since the computation of some NPU operators requires several rounds of warm-up to achieve best performance, we recommend preheating the service with some requests before conducting performance tests to achieve the best end-to-end throughput.
 
-### 2. Which network interface should I use for a multi-node deployment? {: #2-gloo}
+### 2. Network interface selection for multi-node deployments {: #2-gloo}
 
 Depending on the hardware and cluster network configuration, a node may have both a management interface for administration (for example, 1 Gb/s) and a high-speed interface for traffic between nodes (for example, 100 Gb/s). In the launch examples, some components use `nic_name` to select an interface for cross-node TCP connections. If bandwidth limits these connections, try setting `nic_name` to a higher-bandwidth interface and compare performance under the same workload.
 
